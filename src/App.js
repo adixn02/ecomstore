@@ -1,13 +1,51 @@
-import logo from './logo.svg';
 import './App.css';
+import React from 'react';
+import Header from './components/header';
+import Footer from './components/footer';
+import Main from './components/main';
+import { createBrowserRouter, Outlet } from 'react-router-dom';
+import About from './pages/about';
+import Contact from './pages/contact';
+import Cart from './pages/cart';
+import Error from './pages/error';
 
 function App() {
   return (
-    <div className="App">
-      <h1>Welcome to EcomStore</h1>
-      <p>site under development...</p>
-    </div>
+    <>
+      <Header />
+      <Outlet />
+      {/* <Main /> */}
+      <Footer />
+    </>
   );
 }
 
-export default App;
+const appRouter = createBrowserRouter([
+  {
+    path: '/',
+    element: <App />,
+    errorElement: <Error />,
+    children: [
+      {
+        path: '/',
+        element: <Main />
+      },
+      {
+        path: 'about',
+        element: <About />
+      },
+      {
+        path: 'contact',
+        element: <Contact />
+      },
+      {
+        path: 'cart',
+        element: <Cart />
+      }
+    ]
+  }
+]);
+
+// export default App;
+
+export default appRouter;
