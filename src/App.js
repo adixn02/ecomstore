@@ -8,15 +8,18 @@ import About from './pages/about';
 import Contact from './pages/contact';
 import Cart from './pages/cart';
 import Error from './pages/error';
+import { Provider } from 'react-redux';
+import store from './utils/store';
+import Product from './pages/productview';
 
 function App() {
   return (
-    <>
+    <Provider store={store}>
       <Header />
       <Outlet />
       {/* <Main /> */}
       <Footer />
-    </>
+    </Provider >
   );
 }
 
@@ -31,16 +34,20 @@ const appRouter = createBrowserRouter([
         element: <Main />
       },
       {
-        path: 'about',
+        path: '/about',
         element: <About />
       },
       {
-        path: 'contact',
+        path: '/contact',
         element: <Contact />
       },
       {
-        path: 'cart',
+        path: '/cart',
         element: <Cart />
+      },
+      {
+        path: '/product/:id',
+        element: <Product/>
       }
     ]
   }

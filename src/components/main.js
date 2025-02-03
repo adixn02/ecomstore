@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Product from './product'
+import { Link } from 'react-router-dom'
 const Main = () => {
     let [allproducts, setAllProducts] = useState([])
     let [filterdata, setFilterData] = useState([])
@@ -39,7 +40,7 @@ const handlefilterdata=()=>{
             <div className="productscontainer container">
                 {
                     filterdata.map((product) => {
-                        return <Product key={product.id} item={product} />
+                        return <Link className='text-decoration-none' to={'/product/'+product.id}><Product key={product.id} item={product} /></Link>
                     })
                 }
             </div>
